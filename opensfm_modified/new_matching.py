@@ -93,15 +93,14 @@ def match_images_with_pairs(file_path,opensfm_config, exifs, ref_images, pairs):
 	    processes = context.processes_that_fit_in_memory(opensfm_config['processes'], mem_per_process)
 	    logger.info("Computing pair matching with %d processes" % processes)
 	    matches = context.parallel_map(match_unwrap_args, args, processes, jobs_per_process)
-	    logger.info(
-		'Matched {} pairs for {} ref_images {} '
-		'in {} seconds ({} seconds/pair).'.format(
-		    len(pairs),
-		    len(ref_images),
-		    log_projection_types(pairs, ctx.exifs, ctx.cameras),
-		    timer() - start,
-		    (timer() - start) / len(pairs) if pairs else 0))
-
+	    # logger.info(
+		# 'Matched {} pairs for {} ref_images {} '
+		# 'in {} seconds ({} seconds/pair).'.format(
+		#     len(pairs),
+		#     len(ref_images),
+		#     log_projection_types(pairs, ctx.exifs, ctx.cameras),
+		#     timer() - start,
+		#     (timer() - start) / len(pairs) if pairs else 0))
 	    # Index results per pair
 	    resulting_pairs = {}
         for im1, im1_matches in matches:
