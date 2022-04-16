@@ -14,11 +14,14 @@ from concurrent.futures import ThreadPoolExecutor
 
 
 import sys
+
+sys.path.append('./protosrc')
 sys.path.append('../')
 sys.path.append('./opensfm/opensfm/')
 sys.path.append('/home/pi/ODM/SuperBuild/src/opensfm')
-# sys.path.append('/home/pi/ODM/SuperBuild/install/lib/python2.7/dist-packages')
+#sys.path.append('/home/vm1/Desktop/ODM/SuperBuild/install/lib/python2.7/dist-packages')
 sys.path.append('/home/pi/ODM/SuperBuild/install/lib')
+
 
 
 import sendFile_pb2, sendFile_pb2_grpc
@@ -377,7 +380,7 @@ def sfm_feature_matching(current_path, ref_image, cand_images , opensfm_config):
         pairs_matches, preport = new_matching.match_images(current_path+'/', ref_image, ref_image, opensfm_config)
         print(pairs_matches)
         #new_matching.save_matches(current_path+'/', ref_image, pairs_matches)
-	return pairs_matches
+	    return pairs_matches
         #tracking.load_matches(current_path, ref_image)
     except Exception as e:
         print(traceback.print_exc())
@@ -399,11 +402,11 @@ def sfm_feature_matching_pairs(current_path, pairs , opensfm_config):
 
         # load exif is needed
         print('feature matching')
-	new_m ={}
-	for each in pairs: 
-		ref_image = [each[0],each[1]]
-        	pairs_matches, preport = new_matching.match_images(current_path+'/', ref_image, ref_image, opensfm_config)
-		new_m.update(pairs_matches)
+        new_m ={}
+        for each in pairs: 
+            ref_image = [each[0],each[1]]
+                pairs_matches, preport = new_matching.match_images(current_path+'/', ref_image, ref_image, opensfm_config)
+            new_m.update(pairs_matches)
         #print(pairs_matches)
 
         #new_matching.save_matches(current_path+'/', ref_image, pairs_matches)
