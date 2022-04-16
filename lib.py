@@ -65,7 +65,6 @@ dir_path = os.path.dirname(os.path.realpath(__file__))
 
 print('dir path: ' + str(dir_path))
 
-
 def save_images_database(photos, database_file):
     with open(database_file, 'w') as f:
         f.write(json.dumps(map(lambda p: p.__dict__, photos)))

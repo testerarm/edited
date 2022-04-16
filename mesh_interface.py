@@ -36,7 +36,7 @@ def mesh_3d(args,odm_mesh_folder,odm_mesh_ply, filter_point_cloud_path, max_conc
 
 	if not args['use_3dmesh']:
           if not io.file_exists(odm_mesh_ply):
-	      opensfm_reconstruction = io.join_paths(current_path,'reconstruction.json')
+              opensfm_reconstruction = io.join_paths(current_path,'reconstruction.json')
               reconstruction = reconstruction
 
               log.ODM_INFO('Writing ODM 2.5D Mesh file in: %s' % odm_mesh_ply)
