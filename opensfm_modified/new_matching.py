@@ -69,7 +69,7 @@ def match_images_with_pairs(file_path,opensfm_config, exifs, ref_images, pairs):
     try:
 	    per_image = {im: [] for im in ref_images}
 	    for im1, im2 in pairs:
-		per_image[im1].append(im2)
+		    per_image[im1].append(im2)
 
 	    ctx = Context()
 	    #ctx.data = data
@@ -106,8 +106,8 @@ def match_images_with_pairs(file_path,opensfm_config, exifs, ref_images, pairs):
 	    
 	    resulting_pairs = {}
 	    for im1, im1_matches in matches:
-		for im2, m in im1_matches.items():
-		    resulting_pairs[im1, im2] = m
+            for im2, m in im1_matches.items():
+                resulting_pairs[im1, im2] = m
 
 	    return resulting_pairs
     except:
