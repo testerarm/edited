@@ -105,7 +105,7 @@ def match_images_with_pairs(file_path,opensfm_config, exifs, ref_images, pairs):
 	    # Index results per pair
 	    
 	    resulting_pairs = {}
-	    for im1, im1_matches in matches:
+        for im1, im1_matches in matches:
             for im2, m in im1_matches.items():
                 resulting_pairs[im1, im2] = m
 
