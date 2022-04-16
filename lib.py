@@ -1291,21 +1291,21 @@ class FileServer(sendFile_pb2_grpc.FileServiceServicer):
                             
                             if files:
                             # create ODMPhoto list
-                            path_files = [io.join_paths(images_dir, f) for f in files]
+                                path_files = [io.join_paths(images_dir, f) for f in files]
 
                             
-                            dataset_list = io.join_paths(submodel_path,'img_list')
-                            with open(dataset_list, 'w') as dataset_list:
-                                log.ODM_INFO("Loading %s images" % len(path_files))
-                                for f in path_files:
-                                    photos += [types.ODM_Photo(f)]
-                                    dataset_list.write(photos[-1].filename + '\n')
+                                dataset_list = io.join_paths(submodel_path,'img_list')
+                                with open(dataset_list, 'w') as dataset_list:
+                                    log.ODM_INFO("Loading %s images" % len(path_files))
+                                    for f in path_files:
+                                        photos += [types.ODM_Photo(f)]
+                                        dataset_list.write(photos[-1].filename + '\n')
 
-                            # Save image database for faster restart
-                            save_images_database(photos, images_database_file)
+                                # Save image database for faster restart
+                                save_images_database(photos, images_database_file)
                             else:
-                            log.ODM_ERROR('Not enough supported images in %s' % images_dir)
-                            exit(1)
+                                log.ODM_ERROR('Not enough supported images in %s' % images_dir)
+                                exit(1)
                         else:
                             # We have an images database, just load it
                             photos = load_images_database(images_database_file)
