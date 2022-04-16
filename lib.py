@@ -1124,16 +1124,16 @@ class FileServer(sendFile_pb2_grpc.FileServiceServicer):
 
                         #print('pairs ' + str(pair1) + ' ' + str(pair2))
 
-			lis = list(request.feature_pair)
-			pairs_matches = {}
-			for each in lis:
-                        	pairs_m = sfm_feature_matching_pairs(req_node_path,[(each.pair1, each.pair2)] ,opensfm_config)
-				pairs_matches.update(pairs_m)
-                       
+                        lis = list(request.feature_pair)
+                        pairs_matches = {}
+                        for each in lis:
+                            pairs_m = sfm_feature_matching_pairs(req_node_path,[(each.pair1, each.pair2)] ,opensfm_config)
+                            pairs_matches.update(pairs_m)
+                                
 
                         print('here in main taskName')
                         print(pairs_matches)
-			print(len(pairs_matches))
+                        print(len(pairs_matches))
                         filename = str(node_id)
 
 
