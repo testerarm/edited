@@ -1226,10 +1226,7 @@ class FileServer(sendFile_pb2_grpc.FileServiceServicer):
 
                         end = timer()
                         sfm_export_visualsfm_time = end - start
-
-
                         start = timer()
-
                         #sfm_compute_depthmaps(submodel_path, opensfm_config)
                         export_ply_function(submodel_path, opensfm_config)
 
