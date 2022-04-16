@@ -380,7 +380,7 @@ def sfm_feature_matching(current_path, ref_image, cand_images , opensfm_config):
         pairs_matches, preport = new_matching.match_images(current_path+'/', ref_image, ref_image, opensfm_config)
         print(pairs_matches)
         #new_matching.save_matches(current_path+'/', ref_image, pairs_matches)
-	    return pairs_matches
+        return pairs_matches
         #tracking.load_matches(current_path, ref_image)
     except Exception as e:
         print(traceback.print_exc())
