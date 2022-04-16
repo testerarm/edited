@@ -107,7 +107,7 @@ def match_images_with_pairs(file_path,opensfm_config, exifs, ref_images, pairs):
 
 	    return resulting_pairs
     except:
-	   print('exception in new matching self')
+        print('exception in new matching self')
 
 
 def log_projection_types(pairs, exifs, cameras):
