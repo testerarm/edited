@@ -1233,8 +1233,8 @@ class FileServer(sendFile_pb2_grpc.FileServiceServicer):
                         #sfm_compute_depthmaps(submodel_path, opensfm_config)
                         export_ply_function(submodel_path, opensfm_config)
 
-        		        end = timer()
-        		        sfm_export_ply_time = end - start
+                        end = timer()
+                        sfm_export_ply_time = end - start
 
 
 
@@ -1358,8 +1358,8 @@ class FileServer(sendFile_pb2_grpc.FileServiceServicer):
                         import orthophoto
                         start = timer()
                         import odm_georeferencing
-                
-                
+
+
                         import config
                         opendm_config = config.config()
                         tree = {}
@@ -1414,7 +1414,7 @@ class FileServer(sendFile_pb2_grpc.FileServiceServicer):
 
                         mesh_folder_path = submodel_path+ '/mesh'
                         files = os.listdir(mesh_folder_path)
-			            orthophoto_folder = os.path.join(submodel_path, 'orthophoto')
+                        orthophoto_folder = os.path.join(submodel_path, 'orthophoto')
                         more_files = os.listdir(os.path.join(submodel_path, 'mvs'))	
                         files = files+more_files
                         more_files = os.listdir(os.path.join(submodel_path, 'orthophoto'))	
