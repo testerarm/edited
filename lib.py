@@ -661,7 +661,7 @@ def odm_mesh_function(opensfm_config, current_path, max_concurrency, reconstruct
 
 
     try:
-    	opensfm_config['use_3dmesh']=False
+        opensfm_config['use_3dmesh']=False
         odm_filterpoints = os.path.join(current_path,'filterpoints')
         filterpoint_cloud = io.join_paths(odm_filterpoints, "point_cloud.ply")
 
