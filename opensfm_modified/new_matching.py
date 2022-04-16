@@ -82,8 +82,6 @@ def match_images_with_pairs(file_path,opensfm_config, exifs, ref_images, pairs):
 	    args = list(match_arguments(per_image, ctx))
 
 
-	    
-
 	    # Perform all pair matchings in parallel
 	    start = timer()
 	    logger.info('Matching {} image pairs'.format(len(pairs)))
@@ -103,13 +101,13 @@ def match_images_with_pairs(file_path,opensfm_config, exifs, ref_images, pairs):
 		#     (timer() - start) / len(pairs) if pairs else 0))
 	    # Index results per pair
 	    resulting_pairs = {}
-        for im1, im1_matches in matches:
-            for im2, m in im1_matches.items():
-                resulting_pairs[im1, im2] = m
+	    for im1, im1_matches in matches:
+           	 for im2, m in im1_matches.items():
+                	resulting_pairs[im1, im2] = m
 
 	    return resulting_pairs
     except:
-	print('exception in new matching self')
+	   print('exception in new matching self')
 
 
 def log_projection_types(pairs, exifs, cameras):
