@@ -104,7 +104,7 @@ if __name__ == '__main__':
 		start = timer()
 
 
-		response = lib.sfm_create_tracks(current_path, photo_list,opensfm_config)
+		response = lib.sfm_create_tracks(current_path, photo_list,opensfm_config, True, current_path)
 
 
 		end = timer()
@@ -116,14 +116,14 @@ if __name__ == '__main__':
 
 		# need the exifs
 
-		lib.sfm_opensfm_reconstruction(current_path, opensfm_config)
+		lib.sfm_opensfm_reconstruction(current_path, opensfm_config, True, current_path)
 
 
 		end = timer()
 		sfm_opensfm_reconstruction_time = end - start
 
 		start = timer()
-		lib.sfm_undistort_image(current_path, opensfm_config)
+		lib.sfm_undistort_image(current_path, opensfm_config, True, current_path)
 
 		end = timer()
 		sfm_undistort_image_time = end - start
@@ -153,7 +153,7 @@ if __name__ == '__main__':
 
 
 		# delete from makescene
-		lib.mve_makescene_function(current_path, max_concurrency)
+		lib.mve_makescene_function(current_path, max_concurrency, True, current_path)
 
 
 
@@ -162,14 +162,14 @@ if __name__ == '__main__':
 
 		start = timer()
 
-		lib.mve_dense_reconstruction(current_path ,max_concurrency)
+		lib.mve_dense_reconstruction(current_path ,max_concurrency, True, current_path)
 
 		end = timer()
 		mve_dense_reconstruction_time = end - start
 
 		start = timer()
 
-		lib.mve_scene2pset_function(current_path, max_concurrency)
+		lib.mve_scene2pset_function(current_path, max_concurrency, True, current_path)
 
 		end = timer()
 		mve_mve_scene2pset_time = end - start
@@ -194,7 +194,7 @@ if __name__ == '__main__':
 		start = timer()
 		from opendm import io
 		images_database_file = io.join_paths(current_path, 'images.json')
-		photo_list = node_cluster_list[current_node_submodel_key]
+        photo_list =  os.listdir(os.path.join(images_filepath, 'images'))
 		photos = []
 		if not io.file_exists(images_database_file):
                     files = photo_list
