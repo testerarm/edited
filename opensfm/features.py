@@ -87,27 +87,37 @@ def _in_mask(point, width, height, mask):
 def extract_features_sift(image, config):
     sift_edge_threshold = config['sift_edge_threshold']
     sift_peak_threshold = float(config['sift_peak_threshold'])
-    if context.OPENCV3:
-        try:
-            detector = cv2.xfeatures2d.SIFT_create(
-                edgeThreshold=sift_edge_threshold,
-                contrastThreshold=sift_peak_threshold)
-        except AttributeError as ae:
-            if "no attribute 'xfeatures2d'" in ae.message:
-                logger.error('OpenCV Contrib modules are required to extract SIFT features')
-            raise
-        descriptor = detector
-    else:
-        detector = cv2.FeatureDetector_create('SIFT')
-        descriptor = cv2.DescriptorExtractor_create('SIFT')
-        detector.setDouble('edgeThreshold', sift_edge_threshold)
+    
+    # opencv 4.5 
+    detector = cv2.SIFT_create(
+            edgeThreshold=sift_edge_threshold, contrastThreshold=sift_peak_threshold
+    )
+    descriptor = detector
+    
+    # if context.OPENCV3:
+    #     try:
+    #         detector = cv2.xfeatures2d.SIFT_create(
+    #             edgeThreshold=sift_edge_threshold,
+    #             contrastThreshold=sift_peak_threshold)
+    #     except AttributeError as ae:
+    #         if "no attribute 'xfeatures2d'" in ae.message:
+    #             logger.error('OpenCV Contrib modules are required to extract SIFT features')
+    #         raise
+    #     descriptor = detector
+    # else:
+        # detector = cv2.FeatureDetector_create('SIFT')
+        # descriptor = cv2.DescriptorExtractor_create('SIFT')
+        # detector.setDouble('edgeThreshold', sift_edge_threshold)
     while True:
         logger.debug('Computing sift with threshold {0}'.format(sift_peak_threshold))
         t = time.time()
         if context.OPENCV3:
-            detector = cv2.xfeatures2d.SIFT_create(
-                edgeThreshold=sift_edge_threshold,
-                contrastThreshold=sift_peak_threshold)
+            detector = cv2.SIFT_create(
+                edgeThreshold=sift_edge_threshold, contrastThreshold=sift_peak_threshold
+            )
+            # detector = cv2.xfeatures2d.SIFT_create(
+            #     edgeThreshold=sift_edge_threshold,
+            #     contrastThreshold=sift_peak_threshold)
         else:
             detector.setDouble("contrastThreshold", sift_peak_threshold)
         points = detector.detect(image)
@@ -127,25 +137,25 @@ def extract_features_sift(image, config):
 
 def extract_features_surf(image, config):
     surf_hessian_threshold = config['surf_hessian_threshold']
-    if context.OPENCV3:
-        try:
-            detector = cv2.xfeatures2d.SURF_create()
-        except AttributeError as ae:
-            if "no attribute 'xfeatures2d'" in ae.message:
-                logger.error('OpenCV Contrib modules are required to extract SURF features')
-            raise
-        descriptor = detector
-        detector.setHessianThreshold(surf_hessian_threshold)
-        detector.setNOctaves(config['surf_n_octaves'])
-        detector.setNOctaveLayers(config['surf_n_octavelayers'])
-        detector.setUpright(config['surf_upright'])
-    else:
-        detector = cv2.FeatureDetector_create('SURF')
-        descriptor = cv2.DescriptorExtractor_create('SURF')
-        detector.setDouble('hessianThreshold', surf_hessian_threshold)
-        detector.setDouble('nOctaves', config['surf_n_octaves'])
-        detector.setDouble('nOctaveLayers', config['surf_n_octavelayers'])
-        detector.setInt('upright', config['surf_upright'])
+    # if context.OPENCV3:
+    #     try:
+    #         detector = cv2.xfeatures2d.SURF_create()
+    #     except AttributeError as ae:
+    #         if "no attribute 'xfeatures2d'" in ae.message:
+    #             logger.error('OpenCV Contrib modules are required to extract SURF features')
+    #         raise
+    #     descriptor = detector
+    #     detector.setHessianThreshold(surf_hessian_threshold)
+    #     detector.setNOctaves(config['surf_n_octaves'])
+    #     detector.setNOctaveLayers(config['surf_n_octavelayers'])
+    #     detector.setUpright(config['surf_upright'])
+    # else:
+    detector = cv2.FeatureDetector_create('SURF')
+    descriptor = cv2.DescriptorExtractor_create('SURF')
+    detector.setDouble('hessianThreshold', surf_hessian_threshold)
+    detector.setDouble('nOctaves', config['surf_n_octaves'])
+    detector.setDouble('nOctaveLayers', config['surf_n_octavelayers'])
+    detector.setInt('upright', config['surf_upright'])
 
     while True:
         logger.debug('Computing surf with threshold {0}'.format(surf_hessian_threshold))
